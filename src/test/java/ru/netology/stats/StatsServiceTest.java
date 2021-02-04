@@ -5,69 +5,44 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StatsServiceTest {
+    StatsService service = new StatsService();
     int[] salesByMonth = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
 
     @Test
-    void calculateTotal() {
-        int total = 0;
-        for (int monthlySale : salesByMonth) {
-            total += monthlySale;
-        }
+    void shouldCalculateTotal() {
+        int total = service.calculateTotal(salesByMonth);
         assertEquals(180, total);
 
     }
 
     @Test
-    void calculateMonthMaxSales() {
-        int salesMax = 0;
-        int month = 0;
-        int monthMaxSales = 0;
-        for (int monthlySale : salesByMonth) {
-            month++;
-            if (salesMax <= monthlySale) {
-                salesMax = monthlySale;
-                monthMaxSales = month;
-            }
-        }
+    void shouldCalculateAverage() {
+        int total = service.calculateTotal(salesByMonth);
+        int average = total / salesByMonth.length;
+        assertEquals(15, average);
+    }
+
+    @Test
+    void shouldCalculateMonthMaxSales() {
+        int monthMaxSales = service.calculateMonthMaxSales(salesByMonth);
         assertEquals(8, monthMaxSales);
     }
 
     @Test
-    void calculateMonthMinSales() {
-        int salesMin = 100;
-        int month = 0;
-        int monthMinSales = 0;
-        for (int monthlySale : salesByMonth) {
-            month++;
-            if (salesMin >= monthlySale) {
-                salesMin = monthlySale;
-                monthMinSales = month;
-            }
-        }
+    void shouldCalculateMonthMinSales() {
+        int monthMinSales = service.calculateMonthMinSales(salesByMonth);
         assertEquals(9, monthMinSales);
     }
 
     @Test
-    void calculateBelowAverageSales() {
-        int average = StatsService.calculateTotal(salesByMonth) / salesByMonth.length;
-        int month = 0;
-        for (int monthlySale : salesByMonth) {
-            if (average > monthlySale) {
-                month++;
-            }
-        }
-        assertEquals(5, month);
+    void shouldCalculateBelowAverageSales() {
+        int belowAverageSales = service.calculateBelowAverageSales(salesByMonth);
+        assertEquals(5, belowAverageSales);
     }
 
     @Test
-    void calculateAboveAverageSales() {
-        int average = StatsService.calculateTotal(salesByMonth) / salesByMonth.length;
-        int month = 0;
-        for (int monthlySale : salesByMonth) {
-            if (average < monthlySale) {
-                month++;
-            }
-        }
-        assertEquals(5, month);
+    void shouldCalculateAboveAverageSales() {
+        int aboveAverageSales = service.calculateAboveAverageSales(salesByMonth);
+        assertEquals(5, aboveAverageSales);
     }
 }
