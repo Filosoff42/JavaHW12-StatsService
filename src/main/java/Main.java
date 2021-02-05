@@ -5,7 +5,7 @@ public class Main {
         StatsService service = new StatsService();
         int[] salesByMonth = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         int total = service.calculateTotal(salesByMonth);
-        int average = total / salesByMonth.length;
+        int average = service.calculateAverage(salesByMonth);
         int monthMaxSales = service.calculateMonthMaxSales(salesByMonth);
         int monthMinSales = service.calculateMonthMinSales(salesByMonth);
         int belowAverageSales = service.calculateBelowAverageSales(salesByMonth);

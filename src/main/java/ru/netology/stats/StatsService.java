@@ -9,6 +9,11 @@ public class StatsService {
         return total;
     }
 
+    public static int calculateAverage(int[] salesByMonth) {
+        int average = calculateTotal(salesByMonth) / salesByMonth.length;
+        return average;
+    }
+
     public static int calculateMonthMaxSales(int[] salesByMonth) {
         int salesMax = 0;
         int month = 0;

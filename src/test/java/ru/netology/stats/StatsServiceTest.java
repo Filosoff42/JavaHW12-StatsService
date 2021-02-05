@@ -17,8 +17,7 @@ class StatsServiceTest {
 
     @Test
     void shouldCalculateAverage() {
-        int total = service.calculateTotal(salesByMonth);
-        int average = total / salesByMonth.length;
+        int average = service.calculateAverage(salesByMonth);
         assertEquals(15, average);
     }
 
